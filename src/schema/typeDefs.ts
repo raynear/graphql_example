@@ -4,6 +4,10 @@ import ISODate from './dateType';
 const typeDefs = gql`
   scalar ISODate
 
+  """
+  Book Object
+  **need more information of books**
+  """
   type Book {
     title: String
     authors: [Author]
@@ -26,9 +30,24 @@ const typeDefs = gql`
 
   type Query {
     ping: String
+    """
+    Book info
+    return single *book* information
+    """
     book(title:String, authorName:String, isbn:String): Book
+    """
+    Book info List
+    return *book* list information
+    """
     books: [Book]
-    author(name:String, ID:String): Author
+    """get *author* by name or ID or both"""
+    author(
+      "search *author* by name"
+      name:String,
+      "search *author* by ID"
+      ID:String
+      ): Author
+    """get all author list"""
     authors: [Author]
   }
   type Mutation {
